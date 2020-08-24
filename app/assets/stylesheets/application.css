@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ * { padding: 0; margin: 0; border: 0; box-sizing: border-box; }
+
+ #header {
+   position: fixed;
+   width: 100%;
+   top: 0;
+   left: 0;
+   right: 0;
+ }
+
+ header {
+    display: block;
+    height: 60px;
+    text-shadow: #000 0 0 .2em;
+    background: url("https://campfire.org/wp-content/uploads/2016/08/e6bffcd2e194a6b1b8317b8f5126f7a409e150d6_Home-slider-2_v2.jpg");
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+body, html {
+  height: 100%;
+}
+
+main {
+    display: block;
+    height: 100%;
+    font: 1rem 'Fira Sans', sans-serif;
+    background-image:  url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/famous-dogs-from-movies-little-rascals-petey-1560303732.jpg?crop=0.772xw:0.603xh;0.151xw,0.0850xh&resize=480:*");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.pet-image {
+    width: 300px;
+}

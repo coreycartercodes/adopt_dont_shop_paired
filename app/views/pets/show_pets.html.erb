@@ -1,0 +1,22 @@
+<header>
+  <h1 style="display: inline; height: 100%; float: left">
+    <a href="/shelters">Shelters Index</a>
+  </h1>
+  <h1 style="display: inline; height: 100%; float: right; text-align: right">
+    <a href="/pets">Pets Index</a>
+  </h1>
+</header>
+<main>
+<h1><%= @shelter.name %></h1>
+<br>
+<br>
+<% @shelter.pets.each do |pet| %>
+  <img class="pet-image" src="<%= pet.image %>" width=200>
+  <h3><a href="/pets/<%= pet.id %>"> Name: <%= pet.name %></a></h3>
+  <h3>Approximate Age: <%= pet.age %></h3>
+  <h3>Sex: <%= pet.sex %></h3>
+  <h3>Adoption Status: <%= pet.adoption_status %></h3>
+<% end %>
+
+<%=link_to 'Create Pet', "/shelters/#{@shelter.id}/pets/new" %>
+</main>

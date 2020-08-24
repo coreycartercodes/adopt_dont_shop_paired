@@ -1,0 +1,24 @@
+<header>
+  <h1 style="display: inline; height: 100%; float: left">
+    <a href="/shelters">Shelters Index</a>
+  </h1>
+  <h1 style="display: inline; height: 100%; float: right; text-align: right">
+    <a href="/pets">Pets Index</a>
+  </h1>
+</header>
+<main>
+<h1>Pets</h1>
+<br>
+<br>
+<% @pets.each do |pet| %>
+  <img class="pet-image" src=<%= pet.image %>>
+  <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
+  <h3><%= pet.age %></h3>
+  <h3><%= pet.sex %></h3>
+  <h3><a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name %></a></h3>
+  <a href="/pets/<%= pet.id %>/edit">Update Pet</a>
+  <a href="/pets/<%= pet.id %>/delete">Delete Pet</a>
+  <br>
+  <br>
+<% end %>
+</main>
