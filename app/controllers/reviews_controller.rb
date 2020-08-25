@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
   def new
+    @shelter = Shelter.find(params[:id])
   end
 
   def show
@@ -8,7 +9,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    Review.create(review_params)
+    @shelter = Shelter.find(params[:id])
+    @shelter.reviews.create(review_params)
     redirect_to "/shelters/#{@shelter.id}"
   end
 
