@@ -11,7 +11,12 @@ class ReviewsController < ApplicationController
   def create
     @shelter = Shelter.find(params[:id])
     @shelter.reviews.create(review_params)
-    redirect_to "/shelters/#{@shelter.id}"
+    if @shelter.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:alert] = "Title, rating, and content required to continue!"
+      redirect_to "/shelters/#{@shelter.id}/review"
+    end
   end
 
   def review_params
