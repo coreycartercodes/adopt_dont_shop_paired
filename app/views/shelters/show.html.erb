@@ -25,9 +25,10 @@
 <% @shelter.reviews.each do |review| %>
   <h2>Title: <%= review.title %></h2>
   <h3>Rating: <%= review.rating %></h3>
-  <p>Rating: <%= review.content %></p>
+  <h3>Content:</h3><p><%= review.content %></p>
   <img src="<%= review.image %>">
   <br>
+  <a href="/shelters/<%= @shelter.id %>/<%= review.id %>/edit">Update Review</a>
   <br>
 <% end %>
 <a href="/shelters/<%= @shelter.id %>/review">Add Review</a>
