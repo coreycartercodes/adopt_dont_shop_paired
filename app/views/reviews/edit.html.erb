@@ -1,0 +1,21 @@
+<header>
+  <h1 style="display: inline; height: 100%; float: left">
+    <a href="/shelters">Shelters Index</a>
+  </h1>
+  <h1 style="display: inline; height: 100%; float: right; text-align: right">
+    <a href="/pets">Pets Index</a>
+  </h1>
+</header>
+<main>
+  <%= form_tag "/shelters/#{@shelter.id}/#{@review.id}", method: :patch do %>
+  <%= label_tag :title %><br>
+  <%= text_field_tag :title, value="#{@review.title}" %><br>
+  <%= label_tag :rating %><br>
+  <%= text_field_tag :rating, value="#{@review.rating}" %><br>
+  <%= label_tag :content %><br>
+  <%= text_field_tag :content, value="#{@review.content}" %><br>
+  <%= label_tag :image %><br>
+  <%= text_field_tag :image, value="#{@review.image}" %><br>
+  <%= submit_tag 'Update Review' %>
+<% end %>
+</main>
