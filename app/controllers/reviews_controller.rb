@@ -10,12 +10,12 @@ class ReviewsController < ApplicationController
 
   def create
     @shelter = Shelter.find(params[:id])
-    @shelter.reviews.create(review_params)
+    @shelter.reviews.new(review_params)
     if @shelter.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-      flash[:alert] = "Title, rating, and content required to continue!"
-      redirect_to "/shelters/#{@shelter.id}/review"
+      flash.now[:new_alert] = "Title, rating, and content required to continue!"
+      render :new
     end
   end
 
@@ -32,8 +32,12 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @shelter = @review.shelter
     @review.update({title: params[:title], rating: params[:rating], content: params[:content], image: params[:image]})
-    @review.save
-    redirect_to "/shelters/#{@shelter.id}"
+    if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+        flash.now[:update_alert] = "Title, rating, and content required to continue!"
+        render :edit
+    end
   end
   #
   # #
