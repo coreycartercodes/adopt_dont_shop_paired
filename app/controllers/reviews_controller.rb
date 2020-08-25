@@ -22,17 +22,19 @@ class ReviewsController < ApplicationController
   def review_params
     params.permit(:title, :rating, :content, :image)
   end
-  #
-  # def edit
-  #   @review = Review.find(params[:id])
-  # end
-  #
-  # def update
-  #   review = Review.find(params[:id])
-  #   review.update({name: params[:name], address: params[:address], city: params[:city], state: params[:state],zip: params[:zip]})
-  #   review.save
-  #   # redirect_to "/reviews/#{review.id}"
-  # end
+
+  def edit
+    @review = Review.find(params[:id])
+    @shelter = @review.shelter
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    @shelter = @review.shelter
+    @review.update({title: params[:title], rating: params[:rating], content: params[:content], image: params[:image]})
+    @review.save
+    redirect_to "/shelters/#{@shelter.id}"
+  end
   #
   # #
   # def destroy
