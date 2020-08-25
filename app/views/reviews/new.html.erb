@@ -8,11 +8,9 @@
 </header>
 <main>
 
-  <% flash.each do |type, msg| %>
-  <div style="color: red;">
-    <%= msg %>
-  </div>
-<% end %>
+    <% flash.each do |type, message| %>
+      <p style="color: red"><%= message %></p>
+    <% end %>
 
   <%= form_tag "/shelters/#{@shelter.id}" do %>
   <%= label_tag :title %><br>
