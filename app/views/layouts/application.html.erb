@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <title>AdoptDontShop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +12,20 @@
   </head>
 
   <body>
+    <header>
+      <h1 style="display: inline; height: 100%; float: left">
+        <a href="/shelters">Shelters Index</a>
+      </h1>
+      <h1 style="display: inline; height: 100%; float: right; text-align: right">
+        <a href="/pets">Pets Index</a>
+      </h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="favorites">
+      <h4>Favorites: 0</h4>
+    </nav>
+
     <%= yield %>
+
   </body>
 </html>
