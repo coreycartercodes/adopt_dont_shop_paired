@@ -22,8 +22,12 @@
     </header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="favorites">
-      <h4>Favorites: 0</h4>
+      <h4>Favorites: <%= favorites.contents.uniq.count %></h4>
     </nav>
+
+    <% flash.each do |type, message| %>
+      <p style="color: red"><%= message %></p>
+    <% end %>
 
     <%= yield %>
 
