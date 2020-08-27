@@ -35,11 +35,10 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-        flash.now[:update_alert] = "Title, rating, and content required to continue!"
-        render :edit
+      flash.now[:update_alert] = "Title, rating, and content required to continue!"
+      render :edit
     end
   end
-
 
   def destroy
     @review = Review.find(params[:id])
