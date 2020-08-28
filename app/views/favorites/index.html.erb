@@ -1,0 +1,12 @@
+
+<main>
+<h1>Pets</h1>
+<br>
+<br>
+<% @favorite_pets.each do |pet| %>
+  <img class="pet-image" src=<%= pet.image %>>
+  <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
+  <br>
+  <br>
+<% end %>
+</main>

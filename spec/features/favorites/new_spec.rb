@@ -27,7 +27,7 @@ RSpec.describe "Pet specific show page", type: :feature do
     within "nav#favorites" do
       expect(page).to have_content("Favorites: 0")
     end
-    # save_and_open_page
+    
     click_link "Favorite"
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
