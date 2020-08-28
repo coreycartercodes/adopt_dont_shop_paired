@@ -47,10 +47,13 @@ RSpec.describe "Favorites show page", type: :feature do
 
     expect(current_path).to eq("/pets/#{pet_2.id}")
     expect(page).to have_content("#{pet_2.name} added to favorites")
+    expect(page).to have_link('Favorites: 2')
 
     within "nav#favorites" do
       expect(page).to have_content("Favorites: 2")
     end
+    expect(page).to have_link("Favorites: 2")
+    save_and_open_page
 
     visit "/favorites"
 
@@ -60,6 +63,5 @@ RSpec.describe "Favorites show page", type: :feature do
     # expect(page).to have_css("/img[src*='#{pet_2.image}']")
     expect(page).to_not have_content(pet_3.name)
     # expect(page).to_not have_css("/img[src*='#{pet_3.image}']")
-
   end
 end
