@@ -8,8 +8,13 @@
   <h3>Approximate Age: <%= @pet.age %></h3>
   <h3>Sex: <%= @pet.sex %></h3>
   <h3>Adoption Status: <%= @pet.adoption_status %></h3>
-
   <a href="/pets/<%= @pet.id %>/edit">Update Pet</a>
   <a href="/pets/<%= @pet.id %>/delete">Delete Pet</a>
-  <%= link_to "Favorite", "/pets/#{@pet.id}/favorite", method: :patch %>
+  <div id="favorite-links">
+  <% if favorites.contents.include?(@pet.id.to_s) %>
+    <%= link_to "Unfavorite", "/favorites/#{@pet.id}", method: :patch %>
+  <% else %>
+    <%= link_to "Favorite", "/pets/#{@pet.id}/favorite", method: :patch %>
+  <% end %>
+</div>
 </main>
