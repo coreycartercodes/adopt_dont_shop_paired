@@ -3,6 +3,9 @@
 <h1>Pets</h1>
 <br>
 <br>
+<% if favorites.contents.empty? %>
+  <h4 style="color: red">These are not the pets you are looking for.</h4>
+  <% else %>
 <% @favorite_pets.each do |pet| %>
 <div id="pet-<%= pet.id %>">
   <img class="pet-image" src=<%= pet.image %>>
@@ -11,5 +14,6 @@
 </div>
   <br>
   <br>
+<% end %>
 <% end %>
 </main>
