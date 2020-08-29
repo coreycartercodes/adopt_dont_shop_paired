@@ -74,4 +74,11 @@ RSpec.describe "Favorites show page", type: :feature do
     expect(page).to_not have_content(pet_3.name)
     # expect(page).to_not have_css("/img[src*='#{pet_3.image}']")
   end
+
+  it "shows text 'These are not the pets you are looking for'" do
+
+    visit "/favorites"
+
+    expect(page).to have_content("These are not the pets you are looking for.")
+  end
 end
