@@ -4,8 +4,11 @@
 <br>
 <br>
 <% @favorite_pets.each do |pet| %>
+<div id="pet-<%= pet.id %>">
   <img class="pet-image" src=<%= pet.image %>>
   <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
+  <%= link_to "Unfavorite", "/favorites/#{pet.id}" %>
+</div>
   <br>
   <br>
 <% end %>
