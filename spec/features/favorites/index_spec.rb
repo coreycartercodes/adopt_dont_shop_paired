@@ -56,10 +56,21 @@ RSpec.describe "Favorites show page", type: :feature do
 
     visit "/favorites"
 
-    expect(page).to have_content(pet_1.name)
-    # expect(page).to have_css("/img[@src='#{pet_1.image}']")
-    expect(page).to have_content(pet_2.name)
-    # expect(page).to have_css("/img[src*='#{pet_2.image}']")
+    within "div#pet-#{pet_1.id}" do
+      expect(page).to have_content(pet_1.name)
+      # expect(page).to have_css("/img[@src='#{pet_1.image}']")
+      expect(page).to have_link("Unfavorite")
+    end
+
+    within "div#pet-#{pet_2.id}" do
+      expect(page).to have_content(pet_2.name)
+      # expect(page).to have_css("/img[@src='#{pet_2.image}']")
+      expect(page).to have_link("Unfavorite")
+      click_link "Unfavorite"
+    end
+    expect(current_path).to eq('/favorites')
+    expect(page).to have_link("Favorites: 1")
+    expect(page).to_not have_link(pet_2.name)
     expect(page).to_not have_content(pet_3.name)
     # expect(page).to_not have_css("/img[src*='#{pet_3.image}']")
   end
