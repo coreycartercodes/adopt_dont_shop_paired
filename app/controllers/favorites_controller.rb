@@ -21,4 +21,11 @@ class FavoritesController < ApplicationController
     flash[:success] = "#{@pet.name} has been removed from your favorites"
     redirect_to "/pets/#{@pet.id}"
   end
+
+  def remove
+    @pet = Pet.find(params[:id])
+    session[:favorites].delete(@pet.id.to_s)
+    flash[:success] = "#{@pet.name} has been removed from your favorites"
+    redirect_to "/favorites"
+  end
 end
