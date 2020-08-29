@@ -53,7 +53,6 @@ RSpec.describe "Favorites show page", type: :feature do
       expect(page).to have_content("Favorites: 2")
     end
     expect(page).to have_link("Favorites: 2")
-    save_and_open_page
 
     visit "/favorites"
 
