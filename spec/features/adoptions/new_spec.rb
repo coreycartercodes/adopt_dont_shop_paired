@@ -70,9 +70,12 @@ RSpec.describe "Apply for adoption page", type: :feature do
 
     expect(current_path).to eq('/favorites')
     expect(page).to have_content("Application Submitted Successfully!")
-    expect(page).to_not have_content("#{pet_1.name}")
-    expect(page).to_not have_content("#{pet_2.name}")
-    expect(page).to have_content("#{pet_3.name}")
+    
+    within "#fav-list" do
+      expect(page).to_not have_content("#{pet_1.name}")
+      expect(page).to_not have_content("#{pet_2.name}")
+      expect(page).to have_content("#{pet_3.name}")
+    end
   end
 
   it "can alert for incomplete application" do

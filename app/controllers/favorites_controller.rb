@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     @favorite_pets = favorites.contents.map do |favorite|
       new_fav = Pet.find(favorite)
     end
+    @adoptions = Adoption.all
   end
 
   def update

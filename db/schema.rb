@@ -32,11 +32,6 @@ ActiveRecord::Schema.define(version: 2020_08_30_204144) do
     t.string "description"
   end
 
-  create_table "adoptions_pets", id: false, force: :cascade do |t|
-    t.bigint "adoption_id", null: false
-    t.bigint "pet_id", null: false
-  end
-
   create_table "pets", force: :cascade do |t|
     t.string "image"
     t.string "name"
