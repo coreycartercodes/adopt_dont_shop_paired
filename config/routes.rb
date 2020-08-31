@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   patch '/favorites', to: 'favorites#remove_all'
   get '/adoptions/new', to: 'adoptions#new'
   post '/adoptions', to: 'adoptions#create'
+  get '/adoptions/:id', to: 'adoptions#show'
 end
