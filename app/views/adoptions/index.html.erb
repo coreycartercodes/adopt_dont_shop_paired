@@ -2,8 +2,14 @@
   <h1>Pending Applications</h1>
   <br>
   <br>
-  <% @adoptions.each do |adoption| %>
-    <h3><a href="/adoptions/<%= adoption.id %>"><%= adoption.name %></a></h3>
+  <% if @adoptions.empty? %>
+      <h4 style="color: red">There are no pending applications for this furry friend... yet.</h4>
+    <% else %>
+      <% @adoptions.each do |adoption| %>
+        <h3>
+          <a href="/adoptions/<%= adoption.id %>"><%= adoption.name %></a>
+        </h3>
     <br>
+      <% end %>
   <% end %>
 </main>
