@@ -22,6 +22,11 @@ RSpec.describe "As a visitor to an adoptions show page", type: :feature do
 
     pet_3 = shelter_1.pets.create(image: "Mr.cats-pic", name: "Mr. Cat", age: "9", sex: "male", description: "Has Russian accent")
 
+    visit "/pets/#{pet_1.id}/applications"
+
+    expect(page).to_not have_link("Mike Dao")
+    expect(page).to have_content("There are no pending applications for this furry friend... yet.")
+
     adoption_1 = Adoption.create(name: "Mike Dao", address: "345 Mike Dao Rd.", city: "Denver", state: "CO", zip: "99999", phone_number: "123-456-7890", description: "Mike Dao", pets: [pet_1, pet_2, pet_3])
     adoption_2 = Adoption.create(name: "Tim Mitchell", address: "345 you hate to see it Rd.", city: "Denver", state: "CO", zip: "12345", phone_number: "123-456-7899", description: "You love to see it", pets: [pet_1])
 
