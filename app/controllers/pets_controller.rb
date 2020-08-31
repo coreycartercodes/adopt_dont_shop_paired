@@ -36,11 +36,18 @@ class PetsController < ApplicationController
     redirect_to "/pets/#{pet.id}"
   end
 
-  #
   def destroy
     Pet.destroy(params[:id])
     redirect_to "/pets/"
   end
 
-
+  def approve
+    @adoption_pet = AdoptionPet.find(params[:id])
+    @pet = Pet.find(@adoption_pet.pet_id)
+    @pet.update(adoption_status: "Pending")
+    @pet.save
+    @adoption = Adoption.find(@adoption_pet.adoption_id)
+    flash[:pending] = "On hold for #{@adoption.name}"
+    redirect_to "/pets/#{@pet.id}"
+  end
 end
