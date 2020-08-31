@@ -12,11 +12,12 @@ class AdoptionsController < ApplicationController
       if value == "1"
         @pet = Pet.find(pet_id)
         @adoption.pets << @pet
-        session[:favorites].delete(@pet.id.to_s)
       end
     end
     if @adoption.save
-
+      @adoption.pets.each do |pet|
+        session[:favorites].delete(pet.id.to_s)
+      end
       flash[:save_alert] = "Application Submitted Successfully!"
       redirect_to '/favorites'
     else
@@ -27,6 +28,10 @@ class AdoptionsController < ApplicationController
 
   def adoptions_params
     params.permit(:name, :address, :city, :state, :zip, :phone_number, :description, :pets)
+  end
+
+  def show
+    @adoption = Adoption.find(params[:id])
   end
 
 end
