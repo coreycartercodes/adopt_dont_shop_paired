@@ -1,0 +1,9 @@
+<main>
+  <h1>Pending Applications</h1>
+  <br>
+  <br>
+  <% @adoptions.each do |adoption| %>
+    <h3><a href="/adoptions/<%= adoption.id %>"><%= adoption.name %></a></h3>
+    <br>
+  <% end %>
+</main>

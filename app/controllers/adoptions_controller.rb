@@ -1,5 +1,10 @@
 class AdoptionsController < ApplicationController
 
+  def index
+    @pet = Pet.find(params[:id])
+    @adoptions = @pet.adoptions
+  end
+
   def new
     @favorite_pets = favorites.contents.map do |favorite|
       new_fav = Pet.find(favorite)

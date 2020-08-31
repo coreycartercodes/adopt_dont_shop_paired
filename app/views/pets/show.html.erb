@@ -16,5 +16,6 @@
   <% else %>
     <%= link_to "Favorite", "/pets/#{@pet.id}/favorite", method: :patch %>
   <% end %>
+  <%= link_to "View All Applications", "/pets/#{@pet.id}/applications" %>
 </div>
 </main>
