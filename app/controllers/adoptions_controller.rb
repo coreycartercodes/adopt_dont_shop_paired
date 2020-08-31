@@ -39,4 +39,5 @@ class AdoptionsController < ApplicationController
     @adoption = Adoption.find(params[:id])
   end
 
+  
 end
