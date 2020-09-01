@@ -42,12 +42,17 @@ class PetsController < ApplicationController
   end
 
   def approve
-    adoption_pet = AdoptionPet.find(params[:id])
-    @pet = Pet.find(adoption_pet.pet_id)
-    @pet.update(adoption_status: "Pending")
-    @pet.save
-    @adoption = Adoption.find(adoption_pet.adoption_id)
-    flash[:pending] = "On hold for #{@adoption.name}"
+    @pet = Pet.find(params[:id])
+    @approved_adoption = Adoption.find(params[:adoption])
+    @pet.update(adoption_status: "Pending-#{@approved_adoption.id}")
+    flash[:pending] = "On hold for #{@approved_adoption.name}"
     redirect_to "/pets/#{@pet.id}"
+  end
+
+  def revoke
+    @pet = Pet.find(params[:id])
+    @pet.update(adoption_status: "Adoptable")
+    @adoption = Adoption.find(params[:adoption])
+    redirect_to "/adoptions/#{@adoption.id}"
   end
 end
