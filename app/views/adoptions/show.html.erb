@@ -11,11 +11,14 @@
   <div id="adoption-pet-<%= pet.id %>">
     <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
     <% if pet.adoption_status != "Adoptable" %>
-      <h4 style="color: red">Pending Application for <%= pet.name %>. Call for more details.</h4>
-    <% else %>
-    <h3><a href="/pets/<%= pet.id %>/approve">Approve Application</a></h3>
+        <% if pet.adoption_status == "Pending-#{@adoption.id}" %>
+        <%= link_to "Revoke Application", revoke_url({:adoption => @adoption.id, :id => pet.id}) %>
+      <% else %>
+    <h4 style="color: red">Pending Application for <%= pet.name %>. Call for more details.</h4>
+      <% end %>
+        <% else %>
+      <%= link_to "Approve Application", approve_url({:adoption => @adoption.id, :id => pet.id}) %>
     <% end %>
   </div>
   <% end %>
-
   </main>
