@@ -32,5 +32,11 @@ Rails.application.routes.draw do
   post '/adoptions', to: 'adoptions#create'
   get '/adoptions/:id', to: 'adoptions#show'
   get '/pets/:id/applications', to: 'adoptions#index'
-  get '/pets/:id/approve', to: 'pets#approve'
+  get '/pets/:id/approve', to: 'pets#approve', as: "approve"
+  get '/pets/:id/revoke', to: 'pets#revoke', as: "revoke"
+#   resources :pets do
+#     member do
+#       get :approve
+#     end
+#   end
 end
