@@ -10,7 +10,11 @@
   <% @adoption.pets.each do |pet| %>
   <div id="adoption-pet-<%= pet.id %>">
     <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
+    <% if pet.adoption_status != "Adoptable" %>
+      <h4 style="color: red">Pending Application for <%= pet.name %>. Call for more details.</h4>
+    <% else %>
     <h3><a href="/pets/<%= pet.id %>/approve">Approve Application</a></h3>
+    <% end %>
   </div>
   <% end %>
 
