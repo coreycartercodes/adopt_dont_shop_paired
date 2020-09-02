@@ -15,7 +15,7 @@ class SheltersController < ApplicationController
     if @shelter.save
       redirect_to '/shelters'
     else
-      flash[:name] = "Name field required" if params[:name].empty?
+      flash[:name_warning] = "Name field required" if params[:name].empty?
       flash[:address_warning] = "Address field required" if params[:address].empty?
       flash[:city_warning] = "City field required" if params[:city].empty?
       flash[:state_warning] = "State field required" if params[:state].empty?
