@@ -37,6 +37,7 @@ class SheltersController < ApplicationController
       redirect_to '/shelters'
     else
     shelter.delete_pets
+    shelter.delete_reviews
     Shelter.destroy(params[:id])
     redirect_to '/shelters'
   end
