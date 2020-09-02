@@ -13,7 +13,7 @@ RSpec.describe "From Shelter Show Page", type: :feature do
       click_link 'Add Review'
       expect(current_path).to eq("/shelters/#{shelter_1.id}/review")
       fill_in 'title', with: "This place rocks."
-      fill_in 'rating',      with: 4
+      find('#rating').find(:option, 4).select_option
       fill_in 'content',     with: "This place has everything you need"
       fill_in 'image',       with: "https://www.gannett-cdn.com/presto/2020/03/26/PWES/b54dc23e-34f6-460e-8931-26ccc2f8677f-sh032620coronapets005.JPG?crop=6213,3495,x0,y389&width=3200&height=1801&format=pjpg&auto=webp"
 
