@@ -22,12 +22,12 @@ RSpec.describe "When I visit a shelter Show page", type: :feature do
     expect(current_path).to eq("/shelters/#{shelter_1.id}/#{review_1.id}/edit")
 
     fill_in 'title',  with:     "Got better"
-
+    find('#rating').find(:option, 4).select_option
     click_on "Update Review"
 
     expect(current_path).to eq("/shelters/#{shelter_1.id}")
     expect(page).to have_content("Got better")
-    expect(page).to have_content("2")
+    expect(page).to have_content("4")
     expect(page).to have_content("Customer service is awful")
   end
 
