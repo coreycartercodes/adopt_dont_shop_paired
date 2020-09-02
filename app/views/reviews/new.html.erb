@@ -3,8 +3,14 @@
   <%= form_tag "/shelters/#{@shelter.id}" do %>
   <%= label_tag :title %><br>
   <%= text_field_tag :title %><br>
-  <%= label_tag :rating %><br>
-  <%= text_field_tag :rating %><br>
+  <%= label_tag :rating %>
+  <select name="rating" id="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
   <%= label_tag :content %><br>
   <%= text_field_tag :content %><br>
   <%= label_tag :image %><br>
