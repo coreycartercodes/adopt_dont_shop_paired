@@ -24,4 +24,29 @@ RSpec.describe "update existing shelter" do
       end
     end
   end
+
+  it "shows flash with fields visitor didn't fill out" do
+    shelter_1 = Shelter.create(name:       "New Hope Rescue",
+                              address:     "208 Main St",
+                              city:        "Denver",
+                              state:       "CO",
+                              zip:         "80329")
+
+    visit "/shelters"
+
+    click_link "Update Shelter"
+
+    expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
+
+    fill_in 'name', with: "New Hope Rescue"
+    fill_in 'address',  with:     "208 Main St"
+    fill_in 'city',      with:  ""
+    fill_in 'state',     with:   "CO"
+    fill_in 'zip',       with: "80329"
+
+    click_on "Update Shelter"
+
+    expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
+    expect(page).to have_content("City field required")
+  end
 end

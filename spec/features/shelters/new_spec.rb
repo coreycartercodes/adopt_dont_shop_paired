@@ -6,7 +6,7 @@ RSpec.describe "create new shelter" do
       it "can create a new shelter" do
 
         visit "/shelters"
-        
+
         click_link "New Shelter"
 
         expect(current_path).to eq("/shelters/new")
@@ -22,5 +22,24 @@ RSpec.describe "create new shelter" do
         expect(page).to have_content("New Hope Rescue")
       end
     end
+  end
+
+  it "shows flash with fields visitor didn't fill out" do
+    visit "/shelters"
+
+    click_link "New Shelter"
+
+    expect(current_path).to eq("/shelters/new")
+
+    fill_in 'name', with: "New Hope Rescue"
+    fill_in 'address',  with:     "208 Main St"
+    fill_in 'city',      with:  ""
+    fill_in 'state',     with:   "CO"
+    fill_in 'zip',       with: "80329"
+
+    click_on "Create Shelter"
+
+    expect(current_path).to eq("/shelters/new")
+    expect(page).to have_content("City field required")
   end
 end
