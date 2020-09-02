@@ -17,8 +17,16 @@ class PetsController < ApplicationController
 
   def create
     @shelter = Shelter.find(params[:id])
-    pet = @shelter.pets.create!(pet_params)
-    redirect_to "/shelters/#{@shelter.id}/pets/"
+    @pet = @shelter.pets.new(pet_params)
+    if @pet.save
+      redirect_to "/shelters/#{@shelter.id}/pets/"
+    else
+      flash[:pet_name_warning] = "Name field required" if params[:name].empty?
+      flash[:description_warning] = "Description field required" if params[:description].empty?
+      flash[:age_warning] = "Age field required" if params[:age].empty?
+      flash[:sex_warning] = "Sex field required" if params[:sex].empty?
+      redirect_to "/shelters/#{@shelter.id}/pets/new"
+    end
   end
 
   def pet_params
@@ -30,10 +38,17 @@ class PetsController < ApplicationController
   end
 
   def update
-    pet = Pet.find(params[:id])
-    pet.update({image: params[:image], name: params[:name], age: params[:age], sex: params[:sex]})
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    @pet = Pet.find(params[:id])
+    @pet.update({image: params[:image], name: params[:name], age: params[:age], sex: params[:sex]})
+    if @pet.save
+      redirect_to "/pets/#{@pet.id}"
+    else
+      flash[:pet_name_warning] = "Name field required" if params[:name].empty?
+      flash[:description_warning] = "Description field required" if params[:description].empty?
+      flash[:age_warning] = "Age field required" if params[:age].empty?
+      flash[:sex_warning] = "Sex field required" if params[:sex].empty?
+      redirect_to "/pets/#{@pet.id}/edit"
+    end
   end
 
   def destroy
