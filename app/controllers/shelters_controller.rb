@@ -11,8 +11,17 @@ class SheltersController < ApplicationController
   end
 
   def create
-    Shelter.create(shelter_params)
-    redirect_to '/shelters'
+    @shelter = Shelter.new(shelter_params)
+    if @shelter.save
+      redirect_to '/shelters'
+    else
+      flash[:name] = "Name field required" if params[:name].empty?
+      flash[:address_warning] = "Address field required" if params[:address].empty?
+      flash[:city_warning] = "City field required" if params[:city].empty?
+      flash[:state_warning] = "State field required" if params[:state].empty?
+      flash[:zip_warning] = "Zip field required" if params[:zip].empty?
+      redirect_to "/shelters/new"
+    end
   end
 
   def shelter_params
@@ -24,10 +33,18 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:id])
-    shelter.update({name: params[:name], address: params[:address], city: params[:city], state: params[:state],zip: params[:zip]})
-    shelter.save
-    redirect_to "/shelters/#{shelter.id}"
+    @shelter = Shelter.find(params[:id])
+    @shelter.update({name: params[:name], address: params[:address], city: params[:city], state: params[:state],zip: params[:zip]})
+    if @shelter.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:name] = "Name field required" if params[:name].empty?
+      flash[:address_warning] = "Address field required" if params[:address].empty?
+      flash[:city_warning] = "City field required" if params[:city].empty?
+      flash[:state_warning] = "State field required" if params[:state].empty?
+      flash[:zip_warning] = "Zip field required" if params[:zip].empty?
+      redirect_to "/shelters/#{@shelter.id}/edit"
+    end
   end
 
   def destroy
@@ -36,11 +53,11 @@ class SheltersController < ApplicationController
       flash[:delete_warning] = "This shelter has pending adoptions and cannot be deleted."
       redirect_to '/shelters'
     else
-    shelter.delete_pets
-    shelter.delete_reviews
-    Shelter.destroy(params[:id])
-    redirect_to '/shelters'
-  end
+      shelter.delete_pets
+      shelter.delete_reviews
+      Shelter.destroy(params[:id])
+      redirect_to '/shelters'
+    end
   end
 
 
